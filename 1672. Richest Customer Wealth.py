@@ -9,7 +9,7 @@ class Solution:
         return max_wealth
       
       
-      #one line solution using list comprehensions, same logic as above
+      #one line solution using generator, same logic as above
       return max(sum(i) for i in accounts)
       
       #another one line solution inspired from other solutions submitted
