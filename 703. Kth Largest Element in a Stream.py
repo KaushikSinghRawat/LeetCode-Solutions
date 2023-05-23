@@ -14,3 +14,25 @@ class KthLargest:
         self.nums.append(val)
         self.nums.sort(reverse = True)
         return self.nums[self.k - 1]
+
+#Solution using heap, inspired by the solution by yourick
+import heapq
+class KthLargest:
+
+    def __init__(self, k: int, nums: List[int]):
+        self.k, self.nums = k, nums
+        #converting the list nums to a heap
+        #elements are automatically ascendingly ordered upon converting to heap
+        heapq.heapify(self.nums)
+        #using headpop to pop the first element of the heap while length of heap is larger than k
+        while len(self.nums) > self.k:
+            heapq.heappop(self.nums)    
+
+    def add(self, val: int) -> int:
+        #appending/adding val(integer) to the heap
+        heapq.heappush(self.nums, val)
+        #using headpop to pop the first element of the heap while length of heap is larger than k
+        while len(self.nums) > self.k:
+            heapq.heappop(self.nums)
+        #returning the first element of the heap (Which is the kth largest element in the heap)
+        return self.nums[0]
